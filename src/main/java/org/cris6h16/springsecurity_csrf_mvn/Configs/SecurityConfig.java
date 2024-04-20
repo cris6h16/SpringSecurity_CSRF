@@ -16,8 +16,9 @@ public class SecurityConfig {
         http
                 .csrf((csrf) -> csrf
 //                    .csrfTokenRepository(new HttpSessionCsrfTokenRepository()) // default
-                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // HttpOly = false, For let JS Frameworks read it.
+                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // HttpOly = false, For let JS Frameworks read it from cookies
 //                    .csrfTokenRepository(new CookieCsrfTokenRepository()) //  If read the cookie with JS directly isn't necessary == improve security
+                                .csrfTokenRequestHandler(new SpaCsrfTokenRequestHandler())
                 );
         return http.build();
     }
